@@ -1,0 +1,2 @@
+xlsxwriter
+python-json-logger

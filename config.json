@@ -1,0 +1,30 @@
+{
+  "romRootDirectory": "",
+  "outputSpreadsheet": "",
+  "consoles": [
+    {
+      "name": "3DS",
+      "shortName": "3DS",
+      "romFormats": ["zip", "3ds", "idk", "fixme"],
+      "company": "Nintendo"
+    },
+    {
+      "name": "Playstation",
+      "shortName": "PSX",
+      "romFormats": ["zip", "3ds", "idk", "fixme"],
+      "company": "Sony"
+    },
+    {
+      "name": "Nintendo 64",
+      "shortName": "N64",
+      "romFormats": ["zip", "n64", "z64"],
+      "company": "Nintendo"
+    },
+    {
+      "name": "Playstation 3",
+      "shortName": "PS3",
+      "romFormats": ["folder", "iso", "pkg"],
+      "company": "Sony"
+    }
+  ]
+}
