@@ -5,12 +5,12 @@
     {
       "name": "3DS",
       "shortName": "3DS",
-      "romFormats": ["3ds", "3dz", "zip", "cxi", "axf", "3dsx", "elf", "cci", "cia"],
+      "romFormats": ["3ds", "3dz", "zip", "cxi", "axf", "3dsx", "elf", "cci"],
       "company": "Nintendo"
     },
     {
       "name": "Playstation",
-      "shortName": "PSX",
+      "shortName": "PSXISO",
       "romFormats": ["zip", "bin", "cue", "ccd", "chd", "exe", "iso", "m3u", "pbp", "toc"],
       "company": "Sony"
     },
@@ -25,6 +25,66 @@
       "shortName": "PS3",
       "romFormats": ["folder", "iso", "pkg"],
       "company": "Sony"
+    },
+    {
+      "name": "Wii U",
+      "shortName": "Wii U",
+      "romFormats": ["folder"],
+      "company": "Nintendo"
+    },
+    {
+      "name": "Switch",
+      "shortName": "Switch",
+      "romFormats": ["nsp", "xci"],
+      "company": "Nintendo"
+    },
+    {
+      "name": "Genesis",
+      "shortName": "Genesis",
+      "romFormats": ["md", "zip"],
+      "company": "Sega"
+    },
+    {
+      "name": "PSP",
+      "shortName": "PSP",
+      "romFormats": ["bin", "iso"],
+      "company": "Sony"
+    },
+    {
+      "name": "Playstation 2",
+      "shortName": "PS2",
+      "romFormats": ["iso"],
+      "company": "Sony"
+    },
+    {
+      "name": "Super Nintendo",
+      "shortName": "SNES",
+      "romFormats": ["smc", "zip"],
+      "company": "Nintendo"
+    },
+    {
+      "name": "Gamecube",
+      "shortName": "GGC",
+      "romFormats": ["iso"],
+      "company": "Nintendo"
+    },
+    {
+      "name": "DS",
+      "shortName": "NDS",
+      "romFormats": ["nds"],
+      "company": "Nintendo"
+    },
+    {
+      "name": "Arcade",
+      "shortName": "MAMEPLUS",
+      "romFormats": ["zip", "idk", "TODO"],
+      "company": "Various"
+    },
+    {
+      "name": "NES",
+      "shortName": "NES",
+      "romFormats": ["nes", "zip"],
+      "company": "Nintendo"
     }
   ]
 }
