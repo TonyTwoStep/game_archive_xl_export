@@ -1,10 +1,10 @@
-import logging
+#! /usr/bin/env python3
 import sys
 import json
 from pathlib import Path
 from logger import logger
 
-from archive_util import ConsoleArchiver
+from archiver import ConsoleArchiver
 from spreadsheet import ArchiveWorkbook
 
 
@@ -22,23 +22,23 @@ def main():
         console_archivers.append(archiver)
 
     # Setup workbook
-    wb = ArchiveWorkbook(logger, config, root_rom_path, console_archivers)
+    archive_spreadsheet = ArchiveWorkbook(logger, config, root_rom_path, console_archivers)
 
     # Create tabs for each console and an All tab
-    wb.create_all_tab()
-    wb.create_console_tabs()
+    archive_spreadsheet.create_all_tab()
+    archive_spreadsheet.create_console_tabs()
 
     # Update overview tab with console rows, totals, export date
-    wb.update_overview_tab()
+    archive_spreadsheet.update_overview_tab()
 
     # Write changes, close workbook
-    wb.write()
+    archive_spreadsheet.write()
 
 
 def parse_config():
     config_path = (Path(__file__).parent / "config.json")
-    with open(config_path) as f:
-        data = json.load(f)
+    with open(config_path, encoding='utf-8') as file:
+        data = json.load(file)
         return data
 
 
@@ -53,8 +53,7 @@ def get_rom_root(config, default=Path(__file__).parent.parent):
         logger.info("Rom root directory configured from file",
                     extra={"configuredDirectory": config['romRootDirectory']})
         return config['romRootDirectory']
-    logger.info("No rom root directory configured in file, using default",
-                extra={"configuredDirectory": default})
+    logger.info("No rom root directory configured in file, using default", extra={"configuredDirectory": default})
     return default
 
 

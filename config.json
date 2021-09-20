@@ -5,19 +5,19 @@
     {
       "name": "3DS",
       "shortName": "3DS",
-      "romFormats": ["zip", "3ds", "idk", "fixme"],
+      "romFormats": ["3ds", "3dz", "zip", "cxi", "axf", "3dsx", "elf", "cci", "cia"],
       "company": "Nintendo"
     },
     {
       "name": "Playstation",
       "shortName": "PSX",
-      "romFormats": ["zip", "3ds", "idk", "fixme"],
+      "romFormats": ["zip", "bin", "cue", "ccd", "chd", "exe", "iso", "m3u", "pbp", "toc"],
       "company": "Sony"
     },
     {
       "name": "Nintendo 64",
       "shortName": "N64",
-      "romFormats": ["zip", "n64", "z64"],
+      "romFormats": ["bin", "n64", "z64", "jap", "usa", "pal", "rom", "u64", "v64", "N64"],
       "company": "Nintendo"
     },
     {
