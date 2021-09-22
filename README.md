@@ -15,7 +15,10 @@ Configurable and automatic spreadsheet population for a multi-console game libra
   - `name`: attribute is the display name that will show in the spreadsheet tabs etc.
   - `romFormats`: list of file types that the program will consider roms (`folder` option is also available for unpacked game formats)
   - `company`: a cosmetic field for the output spreadsheet 
-
+  ### Ignoring files and folders
+  - In the case of roms being the same format as patches/dlc for a system,`update` and `dlc` directories may be included and files within them will be automatically ignored
+  - Unpacked games (in folder format), will not be searched for additional roms
 ### Future plans
 - Ideally want to be able to automatically gather additional info about a game (release year, studio, genre, etc.) via an API of some sort and include it in the rendered report.
-- Containerized approach with built in scheduling would also be a nice alternative to the manual + cron installation
+  - RAWG is looking promising
+- Containerized approach with built-in scheduling would also be a nice alternative to the manual + cron installation

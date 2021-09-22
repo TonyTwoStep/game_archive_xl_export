@@ -64,18 +64,21 @@ class ConsoleArchiver:
             return None
 
         games = []
+        ignored_directories = ['dlc', 'update']
         try:
             # Look for game folders
             if "folder" in rom_formats:
                 for subdir in next(os.walk(console_dir))[1]:
                     game_path = os.path.join(console_dir, subdir)
-                    game_title = Path(game_path).stem
-                    games.append({
-                        "title": game_title,
+                    game = {
+                        "title": subdir,
                         "filetype": "FOLDER",
                         "path": game_path,
                         "size": f"{human_readable_size(get_folder_size(Path(game_path)))}",
-                    })
+                    }
+                    games.append(game)
+                    logger.info("Rom folder found for console.", extra=game)
+                    ignored_directories.append(subdir.lower)
 
             # Look for rom files
             # pylint: disable=unused-variable
@@ -85,6 +88,10 @@ class ConsoleArchiver:
                         game_path = os.path.join(root, file)
                         game_title = Path(game_path).stem
 
+                        if Path(game_path).parent.name.lower() in ignored_directories:
+                            logger.info("File found in ignored directory, skipping", extra={'path': game_path})
+                            continue
+
                         game = {
                             "title": game_title,
                             "filetype": f"{Path(game_path).suffix.replace('.','').upper()}",
@@ -92,7 +99,7 @@ class ConsoleArchiver:
                             "size": f"{human_readable_size(Path(game_path).stat().st_size)}",
                         }
 
-                        logger.info("Game found for console.", extra=game)
+                        logger.info("Rom file found for console.", extra=game)
                         games.append(game)
 
             return games
