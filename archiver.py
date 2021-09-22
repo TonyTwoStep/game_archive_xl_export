@@ -78,7 +78,7 @@ class ConsoleArchiver:
                     }
                     games.append(game)
                     logger.info("Rom folder found for console.", extra=game)
-                    ignored_directories.append(subdir.lower)
+                    ignored_directories.append(subdir.lower())
 
             # Look for rom files
             # pylint: disable=unused-variable
