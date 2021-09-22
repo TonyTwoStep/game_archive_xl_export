@@ -88,7 +88,7 @@ class ConsoleArchiver:
                         game_path = os.path.join(root, file)
                         game_title = Path(game_path).stem
 
-                        if Path(game_path).parent.name.lower() in ignored_directories:
+                        if any(bad_dir in str(Path(game_path).parent).lower() for bad_dir in ignored_directories):
                             logger.info("File found in ignored directory, skipping", extra={'path': game_path})
                             continue
 
