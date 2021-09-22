@@ -1,5 +1,6 @@
 # game_archive_xl_export
-Configurable and automatic spreadsheet population for a multi-console game library/archive
+Configurable and automatic spreadsheet population for a multi-console game library/archive.
+This program takes an object-oriented approach and is flexible to work with very large archives of games.
 
 ## Setup and Usage
 - Clone the repo into you existing directory where all of your games are
@@ -18,6 +19,16 @@ Configurable and automatic spreadsheet population for a multi-console game libra
   ### Ignoring files and folders
   - In the case of roms being the same format as patches/dlc for a system,`update` and `dlc` directories may be included and files within them will be automatically ignored
   - Unpacked games (in folder format), will not be searched for additional roms
+### Screenshots
+An example **Library Overview** tab with summaries of each console's contents.
+![Library Overview](media/overview.png)
+
+Consoles are broken out into tabs(worksheets) with more detail and breakdown of the games
+![Library Overview](media/ps3.png)
+
+#### Disclaimer
+- This tool in no way promotes piracy. It is a helpful tool for archivists to keep legally owned games organized and cataloged.
+
 ### Future plans
 - Ideally want to be able to automatically gather additional info about a game (release year, studio, genre, etc.) via an API of some sort and include it in the rendered report.
   - RAWG is looking promising
