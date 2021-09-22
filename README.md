@@ -24,7 +24,7 @@ An example **Library Overview** tab with summaries of each console's contents.
 ![Library Overview](media/overview.png)
 
 Consoles are broken out into tabs(worksheets) with more detail and breakdown of the games
-![Library Overview](media/ps3.png)
+![Ps3 worksheet](media/ps3.png)
 
 #### Disclaimer
 - This tool in no way promotes piracy. It is a helpful tool for archivists to keep legally owned games organized and cataloged.
