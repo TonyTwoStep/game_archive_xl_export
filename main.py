@@ -19,7 +19,8 @@ def main():
     console_archivers = []
     for console in config['consoles']:
         archiver = ConsoleArchiver(logger, console, root_rom_path)
-        console_archivers.append(archiver)
+        if archiver.games:
+            console_archivers.append(archiver)
 
     # Setup workbook
     archive_spreadsheet = ArchiveWorkbook(logger, config, root_rom_path, console_archivers)
