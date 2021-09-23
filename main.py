@@ -6,6 +6,7 @@ from logger import logger
 
 from archiver import ConsoleArchiver
 from spreadsheet import ArchiveWorkbook
+from rawg import RawgApi
 
 
 def main():
@@ -22,8 +23,11 @@ def main():
         if archiver.games:
             console_archivers.append(archiver)
 
+    # Create RAWG API object, enabled via env var
+    rawg = RawgApi(logger)
+
     # Setup workbook
-    archive_spreadsheet = ArchiveWorkbook(logger, config, root_rom_path, console_archivers)
+    archive_spreadsheet = ArchiveWorkbook(logger, config, root_rom_path, console_archivers, rawg)
 
     # Create tabs for each console and an All tab
     archive_spreadsheet.create_all_tab()

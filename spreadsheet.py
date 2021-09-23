@@ -9,12 +9,13 @@ from archiver import human_readable_size, get_folder_size
 
 class ArchiveWorkbook:
     """ Custom workbook object for the archive result output """
-    def __init__(self, logger, config, root_path, console_archivers):
+    def __init__(self, logger, config, root_path, console_archivers, rawg):
         self.logger = logger
         self.root_path = root_path
         self.overview_tab, self.workbook = self.setup_workbook(config, root_path, self.logger)
         self.archivers = console_archivers
         self.all_games = None
+        self.rawg = rawg
 
         self.logger.info("Created a new ArchiveWorkbook.", extra=self.__dict__)
 
@@ -56,14 +57,31 @@ class ArchiveWorkbook:
 
             console_tab.write_row(0, 0, ("Game", "Filetype", "Size", "Path"), header_format)
             console_tab.set_tab_color(color)
-            console_tab.set_column(0, 0, 50)
+            console_tab.set_column(0, 0, 35)
             console_tab.set_column(3, 3, 80)
 
+            if self.rawg.enabled:
+                console_tab.write_row(0, 1, ("Filetype", "Released", "Size", "Genres", "Metacritic", "Tags", "Path"),
+                                      header_format)
+                console_tab.set_column(2, 3, 15)
+                console_tab.set_column(4, 4, 30)
+                console_tab.set_column(6, 6, 30)
+                console_tab.set_column(7, 7, 80)
+
             self.logger.info(f"Created worksheet (tab) for {archiver.console_name}", extra={"worksheet": console_tab})
+
             row_num = 1
             if archiver.games:
                 for game in archiver.games:
-                    console_tab.write_row(row_num, 0, (game["title"], game["filetype"], game["size"], game["path"]))
+
+                    if self.rawg.enabled:
+                        console_tab.write_row(row_num, 0,
+                                              (game["rawg_title"], game["filetype"], game['rawg_release_date'],
+                                               game["size"], ", ".join(game['rawg_genres']), game['rawg_metacritic'],
+                                               ", ".join(game['rawg_tags']), game["path"]))
+                    else:
+                        console_tab.write_row(row_num, 0, (game["title"], game["filetype"], game["size"], game["path"]))
+
                     row_num += 1
                 self.logger.info(f"Wrote {len(archiver.games)} game rows to this worksheet",
                                  extra={"worksheet": console_tab})
@@ -92,17 +110,42 @@ class ArchiveWorkbook:
         all_tab.set_tab_color(color)
 
         all_tab.write_row(0, 0, ("Console", "Game", "Filetype", "Size", "Path"), header_format)
-        all_tab.set_column(0, 0, 14)
-        all_tab.set_column(1, 1, 50)
+        all_tab.set_column(0, 0, 10)
+        all_tab.set_column(1, 1, 35)
         all_tab.set_column(4, 4, 80)
+
+        if self.rawg.enabled:
+            all_tab.write_row(0, 2, ("Filetype", "Released", "Size", "Genres", "Metacritic", "Tags", "Path"),
+                              header_format)
+            all_tab.set_column(3, 4, 15)
+            all_tab.set_column(5, 5, 30)
+            all_tab.set_column(7, 7, 30)
+            all_tab.set_column(8, 8, 80)
 
         games = []
         for archiver in self.archivers:
             if archiver.games:
-                for game in archiver.games:
-                    games.append(game)
-                    all_tab.write_row(
-                        row_num, 0, (archiver.short_name, game["title"], game["filetype"], game["size"], game["path"]))
+                for game_num, game in enumerate(archiver.games):
+
+                    if self.rawg.enabled:
+                        game = self.rawg.add_fields_to_archiver_game(game)
+                        self.logger.info("Fetched additional fields from RAWG api to add to this game",
+                                         extra={"game": game})
+
+                        # Overwrite the game entry to have more details so we don't have to search again later
+                        archiver.games[game_num] = game
+                        games.append(game)
+
+                        all_tab.write_row(row_num, 0,
+                                          (archiver.short_name, game["rawg_title"], game["filetype"],
+                                           game['rawg_release_date'], game["size"], ", ".join(game['rawg_genres']),
+                                           game['rawg_metacritic'], ", ".join(game['rawg_tags']), game["path"]))
+                    else:
+                        games.append(game)
+                        all_tab.write_row(
+                            row_num, 0,
+                            (archiver.short_name, game['title'], game["filetype"], game["size"], game["path"]))
+
                     row_num += 1
 
         self.all_games = games
