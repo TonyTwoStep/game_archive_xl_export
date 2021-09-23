@@ -1,2 +1,4 @@
 xlsxwriter
 python-json-logger
+requests
+environs
