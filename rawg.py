@@ -45,10 +45,16 @@ class RawgApi:
         return requests.request("GET", url=self.base_url + url, params=new_params)
 
     def search_game(self, game_title):
-        response = self.get("/games", params={'search': game_title})
-        data = response.json()
+        try:
+            response = self.get("/games", params={'search': game_title})
+            data = response.json()
 
-        return data['results'][0]
+            return data['results'][0]
+
+        except IndexError:
+            self.logger.error("No results found for game on RAWG.", extra={"game_title": game_title})
+
+            return None
 
     def add_fields_to_archiver_game(self, archiver_game):
         result = self.search_game(archiver_game['title'])
@@ -83,5 +89,14 @@ class RawgApi:
                                       "rawg_entry": result
                                   })
                 archiver_game['rawg_tags'] = None
+
+        else:
+            archiver_game['rawg_title'] = archiver_game['title']
+            archiver_game.update({
+                'rawg_release_date': None,
+                "rawg_metacritic": None,
+                'rawg_genres': None,
+                'rawg_tags': None
+            })
 
         return archiver_game
