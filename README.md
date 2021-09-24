@@ -26,10 +26,17 @@ An example **Library Overview** tab with summaries of each console's contents.
 Consoles are broken out into tabs(worksheets) with more detail and breakdown of the games
 ![Ps3 worksheet](media/ps3.png)
 
-#### Disclaimer
-- This tool in no way promotes piracy. It is a helpful tool for archivists to keep legally owned games organized and cataloged.
+
+### Gather More Info About Your Games (RAWG.io)
+- This tool has the ability to get additional information about your game using the [RAWG](https://rawg.io) api
+  - Additional field examples: **release date**, **metacritic score**, **genre**, **tags**, and more 
+- To enable RAWG functionality simply set the following environment variables within your execution environment:
+  - `RAWG_ENABLED`: any value will enable RAWG
+  - `RAWG_API_KEY`: your key for accessing the RAWG api. [Get a RAWG API key](https://rawg.io/login?forward=developer)
 
 ### Future plans
-- Ideally want to be able to automatically gather additional info about a game (release year, studio, genre, etc.) via an API of some sort and include it in the rendered report.
-  - RAWG is looking promising
 - Containerized approach with built-in scheduling would also be a nice alternative to the manual + cron installation
+
+## Disclaimer
+- This tool in no way promotes piracy. It is a helpful tool for archivists to keep legally owned games organized and cataloged.
+
