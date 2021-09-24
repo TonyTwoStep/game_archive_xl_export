@@ -61,10 +61,12 @@ class ArchiveWorkbook:
             console_tab.set_column(3, 3, 80)
 
             if self.rawg.enabled:
-                console_tab.write_row(0, 1, ("Filetype", "Released", "Size", "Genres", "Metacritic", "Tags", "Path"),
+                console_tab.write_row(0, 2, ("Released", "Size", "Genres", "Metacritic", "Tags", "Path"),
                                       header_format)
-                console_tab.set_column(2, 3, 15)
+                console_tab.set_column(2, 2, 15)
+                console_tab.set_column(3, 3, 10)
                 console_tab.set_column(4, 4, 30)
+                console_tab.set_column(5, 5, 15)
                 console_tab.set_column(6, 6, 30)
                 console_tab.set_column(7, 7, 80)
 
@@ -117,8 +119,10 @@ class ArchiveWorkbook:
         if self.rawg.enabled:
             all_tab.write_row(0, 2, ("Filetype", "Released", "Size", "Genres", "Metacritic", "Tags", "Path"),
                               header_format)
-            all_tab.set_column(3, 4, 15)
+            all_tab.set_column(3, 3, 15)
+            all_tab.set_column(4, 4, 10)
             all_tab.set_column(5, 5, 30)
+            all_tab.set_column(6, 6, 15)
             all_tab.set_column(7, 7, 30)
             all_tab.set_column(8, 8, 80)
 
