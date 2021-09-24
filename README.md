@@ -19,13 +19,6 @@ This program takes an object-oriented approach and is flexible to work with very
   ### Ignoring files and folders
   - In the case of roms being the same format as patches/dlc for a system,`update` and `dlc` directories may be included and files within them will be automatically ignored
   - Unpacked games (in folder format), will not be searched for additional roms
-### Screenshots
-An example **Library Overview** tab with summaries of each console's contents.
-![Library Overview](media/overview.png)
-
-Consoles are broken out into tabs(worksheets) with more detail and breakdown of the games
-![Ps3 worksheet](media/ps3.png)
-
 
 ### Gather More Info About Your Games (RAWG.io)
 - This tool has the ability to get additional information about your game using the [RAWG](https://rawg.io) api
@@ -33,6 +26,13 @@ Consoles are broken out into tabs(worksheets) with more detail and breakdown of 
 - To enable RAWG functionality simply set the following environment variables within your execution environment:
   - `RAWG_ENABLED`: any value will enable RAWG
   - `RAWG_API_KEY`: your key for accessing the RAWG api. [Get a RAWG API key](https://rawg.io/login?forward=developer)
+  
+### Screenshots
+An example **Library Overview** tab with summaries of each console's contents.
+![Library Overview](media/overview.png)
+
+Consoles are broken out into tabs(worksheets) with more detail and breakdown of the games
+![Ps3 worksheet](media/ps3.png)
 
 ### Future plans
 - Containerized approach with built-in scheduling would also be a nice alternative to the manual + cron installation
